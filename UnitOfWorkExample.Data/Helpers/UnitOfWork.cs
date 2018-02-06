@@ -27,6 +27,7 @@ namespace UnitOfWorkExample.Data.Helpers
                 .Database(connectionStr)
                 .Mappings(x => x.AutoMappings
                 .Add(AutoMap.AssemblyOf<Product>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ProductOverrides>())
+                .Add(AutoMap.AssemblyOf<User>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<UserOverrides>())
 
                  )
                 .BuildSessionFactory();

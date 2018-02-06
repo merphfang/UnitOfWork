@@ -13,7 +13,7 @@ namespace MVC.Controllers
         public HomeController(IProductService productService) {
             _productService = productService;
         }
-
+        
         public ActionResult Index() {
             var products = _productService.GetAll();
             return View();
@@ -24,7 +24,7 @@ namespace MVC.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "Admin")]
         public ActionResult Contact() {
             ViewBag.Message = "Your contact page.";
 
