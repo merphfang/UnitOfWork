@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWorkExample.Web", "Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWorkExample.Data", "UnitOfWorkExample.Data\UnitOfWorkExample.Data.csproj", "{C8E50A39-AF3E-4E5F-B5C3-6CFAE1800251}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitOfWorkExample.Mvc.Web", "UnitOfWorkExample.Mvc.Web\UnitOfWorkExample.Mvc.Web.csproj", "{764BD8A5-ED20-4B18-9AEC-829E6E1F4317}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C8E50A39-AF3E-4E5F-B5C3-6CFAE1800251}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8E50A39-AF3E-4E5F-B5C3-6CFAE1800251}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8E50A39-AF3E-4E5F-B5C3-6CFAE1800251}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764BD8A5-ED20-4B18-9AEC-829E6E1F4317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764BD8A5-ED20-4B18-9AEC-829E6E1F4317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764BD8A5-ED20-4B18-9AEC-829E6E1F4317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764BD8A5-ED20-4B18-9AEC-829E6E1F4317}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
