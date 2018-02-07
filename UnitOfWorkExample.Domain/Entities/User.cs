@@ -18,5 +18,6 @@ namespace UnitOfWorkExample.Domain.Entities
 
         public virtual int CustomerId { get; set; }
         public virtual string Roles { get; set; }
+        public virtual Guid UserId { get; set; }
     }
 }
