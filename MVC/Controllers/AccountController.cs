@@ -17,8 +17,11 @@ namespace MVC.Controllers
             _accountService = accountService;
         }
 
+        public ActionResult Login() {
+            return View();
+        }
 
-       
+        [HttpPost]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid) {

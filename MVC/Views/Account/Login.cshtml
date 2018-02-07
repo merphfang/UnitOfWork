@@ -6,7 +6,7 @@
 
 <h2>Login</h2>
 
-@using (Html.BeginForm("Account", "Login", FormMethod.Post)) {
+@using (Html.BeginForm("Login", "Account", FormMethod.Post)) {
     //this is for create form tag
     @Html.AntiForgeryToken() // this is for prevent CSRF attack
                             @Html.ValidationSummary(true)

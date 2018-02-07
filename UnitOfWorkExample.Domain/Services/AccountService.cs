@@ -50,7 +50,9 @@ namespace UnitOfWorkExample.Domain.Services
         }
 
         public User GetUserDetails(User user) {
-            return _accountRepository.GetAll().SingleOrDefault(x => x.Email.ToLower() == user.Email.ToLower() && x.Password == user.Password);
+            var users = _accountRepository.GetAll().SingleOrDefault(x => x.Email.ToLower() == user.Email.ToLower() && x.Password == user.Password);
+
+            return users;
         }
     }
 }
