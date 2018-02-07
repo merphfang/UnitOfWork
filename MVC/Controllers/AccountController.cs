@@ -10,7 +10,7 @@ using UnitOfWorkExample.Domain.Services;
 
 namespace MVC.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private IAccountService _accountService;
         public AccountController(IAccountService accountService) {
@@ -49,8 +49,8 @@ namespace MVC.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff() {
-            //AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        public ActionResult Logout() {
+           
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }

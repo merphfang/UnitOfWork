@@ -7,7 +7,7 @@ using UnitOfWorkExample.Domain.Services;
 
 namespace MVC.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private IProductService _productService;
         public HomeController(IProductService productService) {
