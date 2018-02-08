@@ -20,10 +20,7 @@ namespace MVC.Controllers
             _accountService = accountService;
         }
 
-        [Authorize(Roles = "Admin")]
-        public ActionResult Index() {
-            return View();
-        }
+       
         public ActionResult Login() {
             return View();
         }
@@ -69,6 +66,16 @@ namespace MVC.Controllers
             return View(new UserManagementViewModel());
         }
 
+
+        #region Admin
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult Index() {
+            int total = 0;
+            var users = _accountService.GetUsers("merphfang", 0, 5, out total);
+            return View();
+        }
+
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult EditUser(UserManagementViewModel model) {
@@ -109,6 +116,6 @@ namespace MVC.Controllers
                 return View("~/Views/Account/ManageUser.cshtml", model);
             }
         }
-
+        #endregion
     }
 }

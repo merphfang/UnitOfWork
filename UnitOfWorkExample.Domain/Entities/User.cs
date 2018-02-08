@@ -17,5 +17,6 @@ namespace UnitOfWorkExample.Domain.Entities
         public virtual string Roles { get; set; }
         public virtual Guid UserId { get; set; }
         public virtual bool IsActive { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

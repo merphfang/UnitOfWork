@@ -17,6 +17,8 @@ namespace UnitOfWorkExample.Domain.Services
         void Update(User user);
         void Delete(int id);
         User GetUserDetails(User user);
+
+        IQueryable<User> GetUsers(string filter, int initialPage, int pageSize, out int totalRecords);
     }
 
     public class AccountService : IAccountService
@@ -55,6 +57,17 @@ namespace UnitOfWorkExample.Domain.Services
             return users;
         }
 
+        public IQueryable<User> GetUsers(string filter, int initialPage, int pageSize, out int totalRecords) {
+            var query = GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()));
+            var users =query
+                .OrderBy(x => x.FirstName)
+                .Skip(initialPage * pageSize)
+                .Take(pageSize)
+                .GroupBy(p => new { Total = query.Count() })
+                .First();
+            totalRecords = users.Key.Total;
+            return users.Select(u=>u).AsQueryable();
+        }
       
     }
 }

@@ -28,6 +28,7 @@ namespace UnitOfWorkExample.Data.Helpers
                 .Mappings(x => x.AutoMappings
                 .Add(AutoMap.AssemblyOf<Product>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ProductOverrides>())
                 .Add(AutoMap.AssemblyOf<User>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<UserOverrides>())
+                 .Add(AutoMap.AssemblyOf<Customer>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<CustomerOverrides>())
 
                  )
                 .BuildSessionFactory();

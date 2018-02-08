@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Helpers\AutomappingConfiguration.cs" />
     <Compile Include="Helpers\UnitOfWork.cs" />
+    <Compile Include="MappingOverrides\CustomerOverrides.cs" />
     <Compile Include="MappingOverrides\ProductOverrides.cs" />
     <Compile Include="MappingOverrides\UserOverrides.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
