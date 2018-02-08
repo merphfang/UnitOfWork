@@ -55,7 +55,7 @@ namespace UnitOfWorkExample.Data.Helpers
                 if (_transaction != null && _transaction.IsActive)
                     _transaction.Rollback();
 
-                throw;
+                //throw;
             }
             finally
             {

@@ -19,14 +19,39 @@
                 @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav  navbar-left">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Excursions <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        </ul>
+                    </li>
+@if (User.IsInRole("Admin")) {
+                    <li class="dropdown">
+                        <a href="javascript:void(0)" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account Management <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Account List", "Index", "Account")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        </ul>
+                    </li>
+}
+
+                </ul>
+                @*<ul class="nav navbar-nav  navbar-left">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @if (User.IsInRole("Admin")) {
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     }
                     
-                </ul>
+                </ul>*@
 
                 @if (User.Identity.IsAuthenticated) {
                     using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" })) {

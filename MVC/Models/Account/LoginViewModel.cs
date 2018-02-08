@@ -5,6 +5,7 @@ namespace MVC.Models.Account
     public class LoginViewModel
     {
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
 
         [Required]

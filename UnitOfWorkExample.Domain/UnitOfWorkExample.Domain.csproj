@@ -43,6 +43,7 @@
     <Compile Include="Entities\IEntity.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\UserRoles.cs" />
     <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Helpers\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

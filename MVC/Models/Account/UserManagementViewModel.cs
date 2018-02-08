@@ -9,10 +9,12 @@ namespace MVC.Models.Account
     public class UserManagementViewModel
     {
         public int? Id { get; set; }
-        [Required]
-        public string Email { get; set; }
 
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string Email { get; set; }
+
+        
         public string Password { get; set; }
 
         [Required]

@@ -5,8 +5,8 @@
 }
 
 <h2>Manage User</h2>
-@if (!Model.Id.HasValue) {
-using (Html.BeginForm("AddUser", "Account", FormMethod.Post)) {
+
+@using (Html.BeginForm("EditUser", "Account", FormMethod.Post)) {
     //this is for create form tag
     @Html.AntiForgeryToken() // this is for prevent CSRF attack
                             @Html.ValidationSummary(true)
@@ -65,5 +65,4 @@ using (Html.BeginForm("AddUser", "Account", FormMethod.Post)) {
             <td></td>
         </tr>
     </table>
-}
 }
