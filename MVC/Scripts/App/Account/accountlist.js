@@ -5,10 +5,11 @@
         "serverSide": true,
         "ajax": "http://localhost:38149/Account/GetAccounts",
         "columns": [
-             { "data": "Id" },
+             { "data": "Id", "visible": false },
              { "data": "FirstName" },
              { "data": "LastName" },
-             { "data": "Email" }
+             { "data": "Email" },
+             { "data": "Customer" }
         ],
         "order": [[2, "asc"]],
         "language": {
