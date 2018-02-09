@@ -10,6 +10,8 @@ using UnitOfWorkExample.Domain.Services;
 using System.Security.Cryptography;
 using System.Web.Helpers;
 using UnitOfWorkExample.Domain.Enums;
+using MVC.Models;
+using AutoMapper;
 
 namespace MVC.Controllers
 {
@@ -71,9 +73,28 @@ namespace MVC.Controllers
 
         [Authorize(Roles = "Admin")]
         public ActionResult Index() {
-            int total = 0;
-            var users = _accountService.GetUsers("merphfang", 0, 5, out total);
+         
             return View();
+        }
+
+
+       
+        [Authorize(Roles = "Admin")]
+        public JsonResult GetAccounts(jQueryDatatableParam param) {
+            int total = 0;
+
+            int order = param.order.FirstOrDefault()!=null? param.order.FirstOrDefault().column:1;
+            string orderDir = param.order.FirstOrDefault() != null ? param.order.FirstOrDefault().dir:"asc";
+
+
+            var users = _accountService.GetUsers(param.search.value??"",param.start, param.length, out total);
+            List<AccountViewModel> usersViewModel =Mapper.Map<List<AccountViewModel>>(users.ToList());
+            return Json(new {
+                recordsTotal = total,
+                recordsFiltered = total,
+                data = usersViewModel != null ? usersViewModel.AsQueryable() : Enumerable.Empty<AccountViewModel>().AsQueryable()
+            },
+       JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]

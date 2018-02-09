@@ -1,4 +1,5 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="app/account/accountlist.js" />
 /// <reference path="bootstrap.min.js" />
 /// <reference path="jquery.datatables.min.js" />
 /// <reference path="jquery.validate.js" />

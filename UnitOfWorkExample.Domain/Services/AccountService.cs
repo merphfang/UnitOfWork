@@ -57,16 +57,22 @@ namespace UnitOfWorkExample.Domain.Services
             return users;
         }
 
-        public IQueryable<User> GetUsers(string filter, int initialPage, int pageSize, out int totalRecords) {
+        public IQueryable<User> GetUsers(string filter, int start, int pageSize, out int totalRecords) {
+            int initialPage = start / pageSize;
             var query = GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()));
-            var users =query
-                .OrderBy(x => x.FirstName)
-                .Skip(initialPage * pageSize)
-                .Take(pageSize)
-                .GroupBy(p => new { Total = query.Count() })
-                .First();
-            totalRecords = users.Key.Total;
-            return users.Select(u=>u).AsQueryable();
+            if (query.Any()) {
+                var users = query
+                    .OrderBy(x => x.FirstName)
+                    .Skip(initialPage * pageSize)
+                    .Take(pageSize)
+                    .GroupBy(p => new { Total = query.Count() })
+                    .First();
+                totalRecords = users.Key.Total;
+                return users.Select(u => u).AsQueryable();
+            } else {
+                totalRecords = 0;
+                return null;
+            }
         }
       
     }

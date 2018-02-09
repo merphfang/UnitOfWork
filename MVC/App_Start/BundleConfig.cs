@@ -29,6 +29,10 @@ namespace MVC
                       "~/Content/site.css",
                       "~/Content/jquery.dataTables.min.css"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/app/acountlist").Include(
+                        "~/Scripts/App/Account/accountlist.js"
+                        ));
         }
     }
 }
