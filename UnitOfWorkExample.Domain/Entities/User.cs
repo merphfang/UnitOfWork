@@ -18,5 +18,7 @@ namespace UnitOfWorkExample.Domain.Entities
         public virtual Guid UserId { get; set; }
         public virtual bool IsActive { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual DateTime CreatedDate { get; set; }
+        public virtual DateTime UpdatedDate { get; set; }
     }
 }

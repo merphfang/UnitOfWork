@@ -59,7 +59,7 @@ namespace UnitOfWorkExample.Domain.Services
 
         public IQueryable<User> GetUsers(string filter, int start, int pageSize, out int totalRecords) {
             int initialPage = start / pageSize;
-            var query = GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()));
+            var query = GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
                 var users = query
                     .OrderBy(x => x.FirstName)

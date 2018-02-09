@@ -7,7 +7,7 @@ using AutoMapper.Attributes;
 
 namespace MVC.Models.Account
 {
-    [MapsFrom(typeof(User))]
+    
     public class AccountViewModel
     {
         public virtual int Id { get; set; }
@@ -15,6 +15,7 @@ namespace MVC.Models.Account
         public virtual string LastName { get; set; }
         public virtual string Email { get; set; }
         public virtual string Customer { get; set; }
+        public virtual string CreatedDate { get; set; }
        
     }
 }

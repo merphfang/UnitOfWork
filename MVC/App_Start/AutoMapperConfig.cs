@@ -14,7 +14,9 @@ namespace MVC
             Mapper.Initialize(config => {
                 config.CreateMap<User, AccountViewModel>()
                 .ForMember(dest => dest.Customer,
-                           opts => opts.MapFrom(src => src.Customer.Name));
+                           opts => opts.MapFrom(src => src.Customer.Name))
+                .ForMember(dest => dest.CreatedDate,
+                           opts => opts.MapFrom(src => src.CreatedDate.ToString()));
             });
         }
     }

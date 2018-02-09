@@ -83,18 +83,26 @@ namespace MVC.Controllers
         public JsonResult GetAccounts(jQueryDatatableParam param) {
             int total = 0;
 
-            int order = param.order.FirstOrDefault()!=null? param.order.FirstOrDefault().column:1;
-            string orderDir = param.order.FirstOrDefault() != null ? param.order.FirstOrDefault().dir:"asc";
+           
 
 
-            var users = _accountService.GetUsers(param.search.value??"",param.start, param.length, out total);
-            List<AccountViewModel> usersViewModel =Mapper.Map<List<AccountViewModel>>(users.ToList());
-            return Json(new {
-                recordsTotal = total,
-                recordsFiltered = total,
-                data = usersViewModel != null ? usersViewModel.AsQueryable() : Enumerable.Empty<AccountViewModel>().AsQueryable()
-            },
-       JsonRequestBehavior.AllowGet);
+            var users = _accountService.GetUsers(param.search["value"]??"",param.start, param.length, out total);
+            if (users!=null) {
+                List<AccountViewModel> usersViewModel = Mapper.Map<List<AccountViewModel>>(users.ToList());
+                return Json(new {
+                    recordsTotal = total,
+                    recordsFiltered = total,
+                    data = usersViewModel.AsQueryable()
+                },
+           JsonRequestBehavior.AllowGet);
+            } else {
+                return Json(new {
+                    recordsTotal = total,
+                    recordsFiltered = total,
+                    data = Enumerable.Empty<AccountViewModel>().AsQueryable()
+                },
+           JsonRequestBehavior.AllowGet);
+            }
         }
 
         [HttpPost]
