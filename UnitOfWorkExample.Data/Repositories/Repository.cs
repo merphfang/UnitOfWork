@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using UnitOfWorkExample.Data.Helpers;
 using UnitOfWorkExample.Domain.Entities;
 using UnitOfWorkExample.Domain.Repositories;
 using NHibernate;
-using NHibernate.Linq;
-using FluentNHibernate.Cfg;
-using FluentNHibernate.Cfg.Db;
-using FluentNHibernate.Automapping;
-using UnitOfWorkExample.Data.MappingOverrides;
-using NHibernate.Tool.hbm2ddl;
 using UnitOfWorkExample.Domain.Helpers;
 
 namespace UnitOfWorkExample.Data.Repositories

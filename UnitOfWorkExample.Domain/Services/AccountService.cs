@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 using UnitOfWorkExample.Domain.Entities;
-using UnitOfWorkExample.Domain.Helpers;
 using UnitOfWorkExample.Domain.Repositories;
 
 namespace UnitOfWorkExample.Domain.Services
@@ -62,17 +60,7 @@ namespace UnitOfWorkExample.Domain.Services
             int initialPage = start / pageSize;
             var query = _accountRepository.GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
-                IQueryable<User> sortedQuery;
-                if (sortCol == "Customer") {
-                    if (sortDir == "desc") {
-                        sortedQuery = query.OrderByDescending(x => x.Customer.Name);
-                    } else {
-                        sortedQuery = query.OrderBy(x => x.Customer.Name);
-                    }
-                } else {
-                    sortedQuery = query.OrderBy(sortCol + " " + sortDir);
-                }
-
+                IQueryable<User> sortedQuery = GetSortedQuery(query, sortCol, sortDir);
                     List<User> users;
                  users = sortedQuery
                     .Skip(start)
@@ -84,6 +72,34 @@ namespace UnitOfWorkExample.Domain.Services
             } else {
                 totalRecords = 0;
                 return null;
+            }
+        }
+
+        private IQueryable<User> GetSortedQuery(IQueryable<User> query,string sortCol, string sortDir) {
+            // sort expression
+            Expression<Func<User, object>> sortExpression;
+            switch (sortCol) {
+               
+                case "CreatedDate":
+                    sortExpression = (x => x.CreatedDate);
+                    break;
+                case "FirstName":
+                    sortExpression = (x => x.FirstName);
+                    break;
+                case "LastName":
+                    sortExpression = (x => x.LastName);
+                    break;
+                case "Customer.Name":
+                    sortExpression = (x => x.Customer.Name);
+                    break;
+                default:
+                    sortExpression = (x => x.Email);
+                    break;
+            }
+            if (sortDir == "desc") {
+                return query.OrderByDescending(sortExpression).AsQueryable();
+            } else {
+                return query.OrderBy(sortExpression).AsQueryable();
             }
         }
       
