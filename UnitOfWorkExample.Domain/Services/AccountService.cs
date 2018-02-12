@@ -62,12 +62,24 @@ namespace UnitOfWorkExample.Domain.Services
             int initialPage = start / pageSize;
             var query = _accountRepository.GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
-                var users = query
-                    .OrderBy(sortCol + " " +sortDir)
+                IQueryable<User> sortedQuery;
+                if (sortCol == "Customer") {
+                    if (sortDir == "desc") {
+                        sortedQuery = query.OrderByDescending(x => x.Customer.Name);
+                    } else {
+                        sortedQuery = query.OrderBy(x => x.Customer.Name);
+                    }
+                } else {
+                    sortedQuery = query.OrderBy(sortCol + " " + sortDir);
+                }
+
+                    List<User> users;
+                 users = sortedQuery
                     .Skip(start)
                     .Take(pageSize)
                     .ToList();
-                totalRecords = query.Count();
+                    totalRecords = query.Count();
+                
                 return users.Select(u => u).AsQueryable();
             } else {
                 totalRecords = 0;

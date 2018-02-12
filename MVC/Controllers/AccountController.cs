@@ -82,7 +82,7 @@ namespace MVC.Controllers
         [Authorize(Roles = "Admin")]
         public JsonResult GetAccounts(jQueryDatatableParam param) {
             int total = 0;
-            string sortCol =param.columns[Convert.ToInt32(param.order[0]["column"])]["data"];
+            string sortCol =param.columns[Convert.ToInt32(param.order[0]["column"])]["name"];
             string sortDir = param.order[0]["dir"];
            
 
