@@ -82,8 +82,12 @@ namespace MVC.Controllers
         [Authorize(Roles = "Admin")]
         public JsonResult GetAccounts(jQueryDatatableParam param) {
             int total = 0;
-            
-            var users = _accountService.GetUsers(param.search["value"]??"",param.start, param.length, out total);
+            string sortCol =param.columns[Convert.ToInt32(param.order[0]["column"])]["data"];
+            string sortDir = param.order[0]["dir"];
+           
+
+
+            var users = _accountService.GetUsers(param.search["value"]??"",param.start, param.length,sortCol,sortDir, out total);
             if (users!=null) {
                 List<AccountViewModel> usersViewModel = Mapper.Map<List<AccountViewModel>>(users.ToList());
                 return Json(new {

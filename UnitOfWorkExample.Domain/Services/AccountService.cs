@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Text;
 using System.Threading.Tasks;
 using UnitOfWorkExample.Domain.Entities;
@@ -18,7 +19,7 @@ namespace UnitOfWorkExample.Domain.Services
         void Delete(int id);
         User GetUserDetails(User user);
 
-        IQueryable<User> GetUsers(string filter, int initialPage, int pageSize, out int totalRecords);
+        IQueryable<User> GetUsers(string filter, int initialPage, int pageSize,string sortCol,string sortDir, out int totalRecords);
     }
 
     public class AccountService : IAccountService
@@ -57,12 +58,12 @@ namespace UnitOfWorkExample.Domain.Services
             return users;
         }
 
-        public IQueryable<User> GetUsers(string filter, int start, int pageSize, out int totalRecords) {
+        public IQueryable<User> GetUsers(string filter, int start, int pageSize, string sortCol, string sortDir, out int totalRecords) {
             int initialPage = start / pageSize;
             var query = _accountRepository.GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
                 var users = query
-                    .OrderBy(x => x.FirstName)
+                    .OrderBy(sortCol + " " +sortDir)
                     .Skip(start)
                     .Take(pageSize)
                     .ToList();

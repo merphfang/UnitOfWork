@@ -3,15 +3,15 @@
     $('#lstAccounts').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax": "http://localhost:38149/Account/GetAccounts",
+        "ajax": listRequestUrl,
         "columns": [
            
-             { "data": "Id", "visible": false },
-             { "data": "FirstName" },
-             { "data": "LastName" },
-             { "data": "Email" },
-             { "data": "Customer" },
-             { "data": "CreatedDate" },
+             { "name": "Id", "data": "Id", "visible": false },
+             { "name": "FirstName","data": "FirstName" },
+             { "name": "LastName", "data": "LastName" },
+             { "name": "Email", "data": "Email" },
+             { "name": "Customer", "data": "Customer" },
+             { "name": "CreatedDate", "data": "CreatedDate" },
              {
                    "data": "Id",
                    "render": function ( data, type, row ) {

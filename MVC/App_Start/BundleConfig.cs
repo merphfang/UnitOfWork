@@ -9,7 +9,7 @@ namespace MVC
         public static void RegisterBundles(BundleCollection bundles) {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/jquery.dataTables.js"
+                        "~/Content/jquery.dataTables/js/jquery.dataTables.js"
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -27,7 +27,7 @@ namespace MVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/jquery.dataTables.css",
+                      "~/Content/jquery.dataTables/css/jquery.dataTables.css",
                       "~/Content/fontawesome/css/*.css"
                       ));
 
