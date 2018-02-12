@@ -25,8 +25,8 @@ namespace UnitOfWorkExample.Domain.Services
     {
         private IRepository<User> _accountRepository;
 
-        public AccountService(IRepository<User> productRepository) {
-            _accountRepository = productRepository;
+        public AccountService(IRepository<User> accountRepository) {
+            _accountRepository = accountRepository;
         }
 
         public IList<User> GetAll() {
@@ -59,15 +59,14 @@ namespace UnitOfWorkExample.Domain.Services
 
         public IQueryable<User> GetUsers(string filter, int start, int pageSize, out int totalRecords) {
             int initialPage = start / pageSize;
-            var query = GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
+            var query = _accountRepository.GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
                 var users = query
                     .OrderBy(x => x.FirstName)
-                    .Skip(initialPage * pageSize)
+                    .Skip(start)
                     .Take(pageSize)
-                    .GroupBy(p => new { Total = query.Count() })
-                    .First();
-                totalRecords = users.Key.Total;
+                    .ToList();
+                totalRecords = query.Count();
                 return users.Select(u => u).AsQueryable();
             } else {
                 totalRecords = 0;

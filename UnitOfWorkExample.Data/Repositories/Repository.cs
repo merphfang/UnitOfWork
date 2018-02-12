@@ -50,5 +50,9 @@ namespace UnitOfWorkExample.Data.Repositories
         {
             Session.Delete(Session.Load<T>(id));
         }
+
+        public IQueryable<T> GetAll(string query) {
+            return Session.CreateQuery(query).List<T>().AsQueryable();
+        }
     }
 }
