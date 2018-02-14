@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\Account\AccountDetailModel.cs" />
     <Compile Include="Models\Account\AccountViewModel.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,10 +287,14 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\ManageUser.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Add.cshtml" />
+    <Content Include="Views\Shared\_TwoColLayout.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Customer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

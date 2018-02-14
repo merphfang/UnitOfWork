@@ -10,12 +10,14 @@ namespace MVC.Models.Account
     
     public class AccountViewModel
     {
-        public virtual int Id { get; set; }
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-        public virtual string Email { get; set; }
-        public virtual string Customer { get; set; }
-        public virtual string CreatedDate { get; set; }
+        public  int Id { get; set; }
+        public  string FirstName { get; set; }
+        public  string LastName { get; set; }
+        public  string Email { get; set; }
+        public  string Customer { get; set; }
+        public  string CreatedDate { get; set; }
+
+        public  bool IsActive { get; set; }
        
     }
 }

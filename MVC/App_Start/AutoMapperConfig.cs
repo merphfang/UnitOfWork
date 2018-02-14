@@ -17,6 +17,10 @@ namespace MVC
                            opts => opts.MapFrom(src => src.Customer.Name))
                 .ForMember(dest => dest.CreatedDate,
                            opts => opts.MapFrom(src => src.CreatedDate.ToString()));
+
+                config.CreateMap<User, AccountDetailModel>()
+                .ForMember(dest => dest.CustomerId,
+                           opts => opts.MapFrom(src => src.Customer.Id));
             });
         }
     }

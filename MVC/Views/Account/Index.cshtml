@@ -7,11 +7,13 @@
 {
     <script type="text/javascript">
         var listRequestUrl = '@Url.Action("GetAccounts", "Account")';
+        var editUrl = '@Url.Action("Edit", "Account")';
     </script>
    
    @Scripts.Render("~/bundles/app/acountlist")
 }
 <h2>Account List</h2>
+<a href="@Url.Action("Add", "Account")">Add new account</a>
 <table id="lstAccounts" class="data display datatable" cellspacing="0" width="100%" >
     <thead>
         <tr>
@@ -21,6 +23,7 @@
             <th>Email</th>
             <th>Customer</th>
             <th>Created Date</th>
+            <th>Is Active</th>
             <th></th>
         </tr>
     </thead>

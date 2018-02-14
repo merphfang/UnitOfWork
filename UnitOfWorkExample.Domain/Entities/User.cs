@@ -13,7 +13,6 @@ namespace UnitOfWorkExample.Domain.Entities
         public virtual string LastName { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
-        public virtual int CustomerId { get; set; }
         public virtual string Roles { get; set; }
         public virtual Guid UserId { get; set; }
         public virtual bool IsActive { get; set; }

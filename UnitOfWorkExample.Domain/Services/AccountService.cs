@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
 using UnitOfWorkExample.Domain.Entities;
+using UnitOfWorkExample.Domain.Helpers;
 using UnitOfWorkExample.Domain.Repositories;
 
 namespace UnitOfWorkExample.Domain.Services

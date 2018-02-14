@@ -12,10 +12,11 @@
              { "name": "Email", "data": "Email" },
              { "name": "Customer.Name", "data": "Customer" },
              { "name": "CreatedDate", "data": "CreatedDate" },
+             { "name": "IsActive", "data": "IsActive" },
              {
                    "data": "Id",
                    "render": function ( data, type, row ) {
-                       return '<a href=""><i class="fas fa-edit"></i></a>';
+                       return '<a href="' + editUrl +'/'+data+ '"><i class="fas fa-edit"></i></a>';
                    },
                    "orderable": false
                  
