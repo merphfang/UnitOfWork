@@ -26,9 +26,8 @@ namespace UnitOfWorkExample.Data.Helpers
             _sessionFactory = Fluently.Configure()
                 .Database(connectionStr)
                 .Mappings(x => x.AutoMappings
-                .Add(AutoMap.AssemblyOf<Product>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<ProductOverrides>())
-                .Add(AutoMap.AssemblyOf<User>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<UserOverrides>())
-                 .Add(AutoMap.AssemblyOf<Customer>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<CustomerOverrides>())
+                .Add(AutoMap.AssemblyOf<Account>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<AccountOverrides>())
+                .Add(AutoMap.AssemblyOf<Customer>(new AutomappingConfiguration()).UseOverridesFromAssemblyOf<CustomerOverrides>())
 
                  )
                 .BuildSessionFactory();

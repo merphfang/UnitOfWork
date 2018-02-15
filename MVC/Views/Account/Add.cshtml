@@ -16,74 +16,36 @@
             @ViewBag.Message
         </div>
     }
+    <div class="form-group">
+        @Html.LabelFor(a => a.Email)
+        @Html.TextBoxFor(a => a.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Email)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.Password)
+        @Html.PasswordFor(a => a.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Password)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.FirstName)
+        @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.LastName)
+        @Html.TextBoxFor(a => a.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.CustomerId)
+        @Html.DropDownListFor(a => a.CustomerId, new SelectList(Model.CustomersList, "Value", "Text"), string.Empty, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.CustomerId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.IsActive)
+        <input id="IsActive" name="IsActive" type="checkbox" value="@Model.IsActive" />
+        @Html.ValidationMessageFor(a => a.IsActive)
+    </div>
+    <button type="submit" class="btn btn-primary">Add</button>
 
-    <table>
-        <tr>
-            <td>@Html.LabelFor(a => a.Email)</td>
-            <td>@Html.TextBoxFor(a => a.Email)</td>
-            <td>@Html.ValidationMessageFor(a => a.Email)</td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.Password)
-            </td>
-            <td>
-                @Html.PasswordFor(a => a.Password)
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.Password)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.FirstName)
-            </td>
-            <td>
-                @Html.TextBoxFor(a => a.FirstName)
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.FirstName)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.LastName)
-            </td>
-            <td>
-                @Html.TextBoxFor(a => a.LastName)
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.LastName)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.CustomerId)
-            </td>
-            <td>
-               @Html.DropDownListFor(a=> a.CustomerId, new SelectList(Model.CustomersList, "Value", "Text"))  
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.CustomerId)
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(a => a.IsActive)
-            </td>
-            <td>
-                <input id="IsActive" name="IsActive" type="checkbox" value="@Model.IsActive" />
-            </td>
-            <td>
-                @Html.ValidationMessageFor(a => a.IsActive)
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <input type="submit" value="Add" />
-            </td>
-            <td></td>
-        </tr>
-    </table>
 }

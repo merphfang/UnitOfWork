@@ -6,6 +6,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+   
+   
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -88,5 +90,16 @@
     @Scripts.Render("~/bundles/fontawesome")
   
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+
+        $(document).on("click", "[type='checkbox']", function (e) {
+
+            if (this.checked) {
+                $(this).attr("value", "true");
+            } else {
+                $(this).attr("value", "false");
+            }
+        });
+    </script>
 </body>
 </html>

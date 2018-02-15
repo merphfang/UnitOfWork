@@ -13,39 +13,39 @@ namespace UnitOfWorkExample.Domain.Services
 {
     public interface IAccountService
     {
-        IList<User> GetAll();
-        User GetById(int id);
-        void Create(User user);
-        void Update(User user);
+        IList<Account> GetAll();
+        Account GetById(int id);
+        void Create(Account user);
+        void Update(Account user);
         void Delete(int id);
-        User GetUserDetails(User user);
+        Account GetUserDetails(Account user);
 
-        IQueryable<User> GetUsers(string filter, int initialPage, int pageSize,string sortCol,string sortDir, out int totalRecords);
+        IQueryable<Account> GetUsers(string filter, int initialPage, int pageSize,string sortCol,string sortDir, out int totalRecords);
     }
 
     public class AccountService : IAccountService
     {
-        private IRepository<User> _accountRepository;
+        private IRepository<Account> _accountRepository;
 
-        public AccountService(IRepository<User> accountRepository) {
+        public AccountService(IRepository<Account> accountRepository) {
             _accountRepository = accountRepository;
         }
 
-        public IList<User> GetAll() {
+        public IList<Account> GetAll() {
             return _accountRepository
                 .GetAll()
                 .ToList();
         }
 
-        public User GetById(int id) {
+        public Account GetById(int id) {
             return _accountRepository.GetById(id);
         }
 
-        public void Create(User user) {
+        public void Create(Account user) {
             _accountRepository.Create(user);
         }
 
-        public void Update(User user) {
+        public void Update(Account user) {
             _accountRepository.Update(user);
         }
 
@@ -53,18 +53,18 @@ namespace UnitOfWorkExample.Domain.Services
             _accountRepository.Delete(id);
         }
 
-        public User GetUserDetails(User user) {
+        public Account GetUserDetails(Account user) {
             var users = _accountRepository.GetAll().SingleOrDefault(x => x.Email.ToLower() == user.Email.ToLower());
 
             return users;
         }
 
-        public IQueryable<User> GetUsers(string filter, int start, int pageSize, string sortCol, string sortDir, out int totalRecords) {
+        public IQueryable<Account> GetUsers(string filter, int start, int pageSize, string sortCol, string sortDir, out int totalRecords) {
             int initialPage = start / pageSize;
             var query = _accountRepository.GetAll().Where(x => x.FirstName.ToLower().Contains(filter.ToLower()) || x.LastName.ToLower().Contains(filter.ToLower()) || x.Email.ToLower().Contains(filter.ToLower()) || x.Customer.Name.ToLower().Contains(filter.ToLower()));
             if (query.Any()) {
-                IQueryable<User> sortedQuery = GetSortedQuery(query, sortCol, sortDir);
-                    List<User> users;
+                IQueryable<Account> sortedQuery = GetSortedQuery(query, sortCol, sortDir);
+                    List<Account> users;
                  users = sortedQuery
                     .Skip(start)
                     .Take(pageSize)
@@ -78,9 +78,9 @@ namespace UnitOfWorkExample.Domain.Services
             }
         }
 
-        private IQueryable<User> GetSortedQuery(IQueryable<User> query,string sortCol, string sortDir) {
+        private IQueryable<Account> GetSortedQuery(IQueryable<Account> query,string sortCol, string sortDir) {
             // sort expression
-            Expression<Func<User, object>> sortExpression;
+            Expression<Func<Account, object>> sortExpression;
             switch (sortCol) {
                
                 case "CreatedDate":

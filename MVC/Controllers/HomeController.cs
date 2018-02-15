@@ -9,13 +9,13 @@ namespace MVC.Controllers
 {
     public class HomeController : BaseController
     {
-        private IProductService _productService;
-        public HomeController(IProductService productService) {
-            _productService = productService;
+        
+        public HomeController() {
+          
         }
         
         public ActionResult Index() {
-            var products = _productService.GetAll();
+           
             return View();
         }
 

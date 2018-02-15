@@ -61,6 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Script\Table_Customer.sql" />
-    <None Include="Script\Table_User.sql" />
+    <None Include="Script\Table_Account.sql" />
   </ItemGroup>
 </Project>

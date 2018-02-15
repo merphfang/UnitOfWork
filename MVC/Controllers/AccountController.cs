@@ -35,7 +35,7 @@ namespace MVC.Controllers
                 return View(model);
             }
 
-            User user = new User() { Email = model.Email, Password = model.Password };
+            Account user = new Account() { Email = model.Email, Password = model.Password };
 
             user = _accountService.GetUserDetails(user);
 
@@ -84,7 +84,7 @@ namespace MVC.Controllers
 
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id) {
-            User user = _accountService.GetById(id);
+            Account user = _accountService.GetById(id);
             AccountDetailModel model = Mapper.Map<AccountDetailModel>(user);
 
             var customers = _customerService.GetAll();
@@ -135,12 +135,12 @@ namespace MVC.Controllers
         [HttpPost]
         [Authorize(Roles = "Admin")]
         public ActionResult EditUser(AccountDetailModel model) {
-            if (ViewData.ModelState.IsValid) {
+           
                 try {
                     var nowdate = DateTime.Now;
                     var customerId = model.CustomerId.Value;
                     if (!model.Id.HasValue) {
-                        User user = new User();
+                        Account user = new Account();
                         var newGuid = Guid.NewGuid();
                         user.CreatedDate = nowdate;
                         user.UpdatedDate = nowdate;
@@ -157,7 +157,7 @@ namespace MVC.Controllers
                         _accountService.Create(user);
 
                     } else {
-                        User user = _accountService.GetById(model.Id.Value);
+                        Account user = _accountService.GetById(model.Id.Value);
                         user.FirstName = model.FirstName;
                         user.LastName = model.LastName;
                         user.Email = model.Email;
@@ -173,20 +173,9 @@ namespace MVC.Controllers
                     return RedirectToAction("Index", "Account");
                 }
                 catch (Exception ex) {
-                    ModelState.AddModelError("", ex.Message);
-                    if (!model.Id.HasValue) {
-                        return View("~/Views/Account/Add.cshtml", model);
-                    }else {
-                        return View("~/Views/Account/Edit.cshtml", model);
-                    }
-                }
-            }else {
-                if (!model.Id.HasValue) {
-                    return View("~/Views/Account/Add.cshtml", model);
-                } else {
-                    return View("~/Views/Account/Edit.cshtml", model);
-                }
+                throw ex;
             }
+            
         }
         #endregion
     }

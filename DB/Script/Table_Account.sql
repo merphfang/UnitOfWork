@@ -1,11 +1,11 @@
-﻿/****** Object:  Table [dbo].[User]    Script Date: 2/9/2018 2:13:10 PM ******/
+﻿/****** Object:  Table [dbo].[Account]    Script Date: 2/15/2018 10:57:22 AM ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE TABLE [dbo].[User](
+CREATE TABLE [dbo].[Account](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Email] [nvarchar](200) NOT NULL,
 	[FirstName] [nvarchar](100) NOT NULL,
@@ -24,5 +24,3 @@ CREATE TABLE [dbo].[User](
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-
-
