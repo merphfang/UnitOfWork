@@ -9,9 +9,9 @@ using UnitOfWorkExample.Domain.Entities;
 
 namespace UnitOfWorkExample.Data.MappingOverrides
 {
-    public class AccountOverrides : IAutoMappingOverride<Account>
+    public class UserOverrides : IAutoMappingOverride<User>
     {
-        public void Override(AutoMapping<Account> mapping) {
+        public void Override(AutoMapping<User> mapping) {
             mapping.References(x => x.Customer,"CustomerId");
         }
     }

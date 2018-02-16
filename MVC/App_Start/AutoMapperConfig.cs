@@ -12,13 +12,13 @@ namespace MVC
     {
         public static void RegisterMappings() {
             Mapper.Initialize(config => {
-                config.CreateMap<Account, AccountViewModel>()
+                config.CreateMap<User, AccountViewModel>()
                 .ForMember(dest => dest.Customer,
                            opts => opts.MapFrom(src => src.Customer.Name))
                 .ForMember(dest => dest.CreatedDate,
                            opts => opts.MapFrom(src => src.CreatedDate.ToString()));
 
-                config.CreateMap<Account, AccountDetailModel>()
+                config.CreateMap<User, AccountDetailModel>()
                 .ForMember(dest => dest.CustomerId,
                            opts => opts.MapFrom(src => src.Customer.Id));
             });

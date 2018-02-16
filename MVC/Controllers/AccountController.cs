@@ -35,7 +35,7 @@ namespace MVC.Controllers
                 return View(model);
             }
 
-            Account user = new Account() { Email = model.Email, Password = model.Password };
+            User user = new User() { Email = model.Email, Password = model.Password };
 
             user = _accountService.GetUserDetails(user);
 
@@ -84,7 +84,7 @@ namespace MVC.Controllers
 
         [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id) {
-            Account user = _accountService.GetById(id);
+            User user = _accountService.GetById(id);
             AccountDetailModel model = Mapper.Map<AccountDetailModel>(user);
 
             var customers = _customerService.GetAll();
@@ -140,7 +140,7 @@ namespace MVC.Controllers
                     var nowdate = DateTime.Now;
                     var customerId = model.CustomerId.Value;
                     if (!model.Id.HasValue) {
-                        Account user = new Account();
+                        User user = new User();
                         var newGuid = Guid.NewGuid();
                         user.CreatedDate = nowdate;
                         user.UpdatedDate = nowdate;
@@ -157,7 +157,7 @@ namespace MVC.Controllers
                         _accountService.Create(user);
 
                     } else {
-                        Account user = _accountService.GetById(model.Id.Value);
+                        User user = _accountService.GetById(model.Id.Value);
                         user.FirstName = model.FirstName;
                         user.LastName = model.LastName;
                         user.Email = model.Email;
