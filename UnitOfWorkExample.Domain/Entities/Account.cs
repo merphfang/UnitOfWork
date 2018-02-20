@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnitOfWorkExample.Domain.Entities
 {
-    public class User : IEntity
+    public class Account : IEntity
     {
         public virtual int Id { get; set; }
         public virtual string FirstName { get; set; }
