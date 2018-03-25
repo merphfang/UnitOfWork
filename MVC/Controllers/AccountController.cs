@@ -148,7 +148,6 @@ namespace MVC.Controllers
                         user.LastName = model.LastName;
                         user.UserId = newGuid;
                         user.Email = model.Email;
-                        user.Roles = UserRoles.User.ToString();
                         user.Customer = _customerService.GetById(customerId);
                         user.IsActive = Convert.ToBoolean(Request.Form["IsActive"]);
 
